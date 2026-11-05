@@ -1,0 +1,82 @@
+<USER_REQUEST>
+TASK: Fix five bugs in the MCE AI Assistant seen in the live app, then make it fast. Do not stop until all tests pass.
+
+SAFETY RULES:
+- Make a dated backup first (code, chroma_db, faculty_profiles, hod_verified.json, caches).
+- mce_docs must stay at 83 chunks. Do not modify the original PDFs. Do not invent data.
+- Keep edits to existing files minimal and show me the diffs. Keep feature flags working.
+
+BUGS TO REPRODUCE FIRST (with DEBUG_ROUTING on; show intent, resolved department, score, margin, source, handler output):
+1. "hi" -> shows the AIML HOD card (Dr. Arjun B C) with "overview not available". Must be a greeting reply.
+2. "overview of ise department" -> "A detailed overview of Information Science and Engineering is not available in the documents." The documents DO contain department information.
+3. "overview of cse department'" (note the trailing apostrophe) -> overview "not available", and the HOD card shows Dr. Ananda Babu J (the ISE HOD, with the ISE photo and "Specialization: Information Science") labelled as Department: Computer Science and Engineering. That is wrong.
+4. "tell me about mathematics department" -> the heading reads "Department of Department of Mathematics" and the overview is "not available". The HOD card (T Mohana) is correct.
+5. "fee structure" and "clubs at mce" -> BLANK assistant reply (asked twice, still blank).
+6. "overview of aiml department" -> overview "not available". Also, the HOD email shows abc@mcehassan.ac.in, which looks like a placeholder. Check it against the source document.
+
+PART 1: GREETINGS AND SMALL TALK
+1. Add a SMALLTALK intent, checked FIRST: hi, hello, hey, good morning/afternoon/evening, thanks, thank you, bye, who are you, what can you do, help. Reply instantly (no retrieval, no LLM) with a short friendly message listing what the bot can do (department overviews, HODs, faculty with photos, placements, admissions, facilities) and 4 example questions.
+2. Department resolver hardening: tokens of 3 characters or fewer ("hi", "is", "ai", "of", "me") can match ONLY by exact alias, never by fuzzy matching. Fuzzy matching needs a minimum score AND a minimum margin over the second-best match. If no confident department is found, do NOT fall back to any department. Go to general RAG instead.
+3. Strip stray punctuation and quotes before processing the query (e.g. "overview of cse department'").
+
+PART 2: DEPARTMENT OVERVIEWS THAT ACTUALLY WORK
+1. Find out why retrieval returns nothing for ISE, CSE, AIML and Mathematics. Check specifically: (a) a metadata filter on department where chunks have no or different department metadata, so the filter removes everything, (b) the reranker or score threshold removing all chunks, (c) the handler searching only one collection, (d) the department name being spelled differently in the documents than in the resolver. Explain the root cause.
+2. Fix it by PRECOMPUTING instead of searching at question time. Build department_overviews.json (new file, from "overview of mce.pdf", "about first year department.pdf", the faculty PDFs and any other source, read-only):
+   - For every department and PG program, extract and store: official name, about/introduction, vision, mission, programs offered, PEOs/POs if present, labs and facilities, achievements, intake, year established, and the source file and page for each part.
+   - Locate the sections by scanning the headings and page text for the department's full name and all its short forms/aliases. If one department spans several pages, merge them in order.
+   - Print a table: department | overview found (yes/no) | characters | source pages. Every department that truly has text in the PDFs must show "yes". Investigate and fix any "no" by re-checking the OCR (re-OCR at 300 DPI if the text is missing).
+3. The DEPARTMENT_OVERVIEW handler reads department_overviews.json first (instant), formats it as: a heading with the department's full name (only once, with NO duplicated "Department of"), the overview sections, the HOD card, the faculty count with an offer "Ask 'faculty of <dept>' to see all faculty", and a source line. If the precomputed overview is missing, fall back to hybrid retrieval WITHOUT strict filters (department as a boost, not a filter). Say "not available" ONLY if both fail.
+4. Heading helper: build the title from the official name and add "Department of" only if the name doesn't already start with "Department".
+
+PART 3: HOD CARD MUST NEVER SHOW THE WRONG PERSON
+1. The card must display the person's OWN record values (department, designation, specialization). Never overwrite the department field with the resolved department.
+2. Before rendering any HOD card, assert: person.department == resolved department. If it does not match, reject it and say "The HOD of <dept> is not listed in the documents." Never show another department's HOD.
+3. Find the real CSE HOD in the documents (hod s of college.pdf and the faculty PDFs) and add it to hod_verified.json with the source page. Do the same check for EVERY department: print the HOD audit table (department | HOD | person's own department | photo file | email | source page). Flag any department where the HOD is missing or duplicated, or where the person's own department differs from the row.
+4. Check the email and phone of every HOD and faculty profile. Flag placeholder-looking values (abc@, test@, xxx, 0000000000, repeated digits) and report them. Show the value only if it exists in the source document.
+
+PART 4: NEVER A BLANK REPLY (general RAG path)
+1. Reproduce the blank reply for "fee structure" and "clubs at mce" and find the cause (empty context, guard returning "", streaming yielding no tokens, caught exception, the cache replaying an empty answer).
+2. Make the global safeguard cover EVERY path: if the final text is empty, retry once with broader retrieval (higher top-k, no filter, no threshold); if still empty, show "I couldn't find <topic> in the documents. You can ask about: departments, HODs, faculty, placements, admissions, facilities." Never write an empty message to the chat history.
+3. Check that the documents actually contain fee and club information (search all collections and the PDFs). If they do, make retrieval find it (hybrid with BM25, query expansion). If they do not, the reply should be the honest "not found" message above.
+4. Never cache empty or "not found" answers. Clear any cached empty or failed entries and report how many were removed.
+
+PART 5: SPEED
+1. Profile first. Show a per-stage timing table for 10 questions (greeting, HOD, faculty list, department overview, a general RAG question, fee structure): intent detection, query expansion, retrieval, rerank, LLM, rendering. Find the real bottleneck. Do not guess.
+2. Fix in this order of likely impact:
+   - Instant paths (no LLM, no retrieval): smalltalk, HOD, person lookup, faculty list, department overview (from department_overviews.json). Target: under 300 ms.
+   - Load the embedding model, reranker, ChromaDB client, BM25 index and faculty data ONCE (st.cache_resource). Persist the BM25 index.
+   - The chat history re-renders on every Streamlit rerun, including all the photo cards. Fix this: store the history as lightweight data, cache image bytes with st.cache_data, use a fixed image width, and avoid re-reading images from disk on every rerun. Do not re-run retrieval or the LLM on reruns. Consider rendering only the last N messages in full.
+   - Cache answers (normalized query -> answer) so repeats return instantly. Do not cache failures.
+   - Run retrieval on the collections in parallel. Retrieve the top 20, rerank to the top 4 or 5. Skip the reranker when the first-stage score is already high.
+   - Stream the LLM output (st.write_stream) and use a fast model with a limited max output length.
+3. Targets: greeting and structured answers under 0.3 s; the first token of a RAG answer within 2 s and the full answer within 5 s; repeated questions under 0.2 s. Report p50 and p95 before and after.
+
+PART 6: TESTS (run all, show real outputs, fix, and re-run everything)
+1. "hi", "hello", "hey", "thanks", "who are you" -> a friendly instant reply, no department or HOD card.
+2. "overview of ise department", "overview of cse department'", "explain the ece department", "tell me about mathematics department", "about civil department", "overview of aiml department", "mechanical department", "about first year department" -> a real overview from the documents, one correct heading, a correct HOD card, the faculty count and a source line.
+3. Loop over EVERY department and PG program: the overview is non-empty (or an honest "not available" when the PDFs truly have none), and the HOD card's department equals the requested department.
+4. "fee structure", "clubs at mce", "hostel facilities", "placement training facilities", "about malnad college of engineering hassan" -> a non-empty answer, from the documents or the honest "not found" message.
+5. "hod of cse" -> the real CSE HOD, never Dr. Ananda Babu J. All the earlier HOD fixes still pass (ISE Dr. Ananda Babu J., EEE Rajanna, Civil Dr. Sumana Jayaprakash, E&I Dr. C M Naveen Kumar, First Year Dr. Kalavathi G K, Mathematics T Mohana). Faculty of ISE still shows 14 cards.
+6. Gibberish ("asdf qwer") and a non-existent department ("overview of xyz department") -> a friendly "not found" message with no HOD card.
+7. A unit test: no query in the test list returns an empty string.
+8. Run the real app (streamlit run app.py), try every question from this list in the browser, ask each twice, and confirm no blank replies, no wrong cards, no terminal exceptions and mce_docs = 83 chunks.
+
+FINAL REPORT:
+- Root cause of each of the 6 bugs and the fix
+- The department_overviews table and the HOD audit table
+- Placeholder or suspicious emails and phones found
+- Latency before and after (p50 and p95)
+- Test results (pass/fail)
+- Files created and edited (with diffs), the backup location, and the flags to turn each feature off
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-01T21:36:15+05:30.
+
+The user's current state is as follows:
+Other open documents:
+- d:\MINI Project\mce-ai-assistant\ui_cards.py (LANGUAGE_UNSPECIFIED)
+- c:\Users\manik\Downloads\ms-vscode.powershell-2025.4.0.vsix (LANGUAGE_UNSPECIFIED)
+- d:\MINI Project\mce-ai-assistant\build_complete_faculty.py (LANGUAGE_UNSPECIFIED)
+- d:\MINI Project\mce-ai-assistant\build_complete_pg_faculty.py (LANGUAGE_UNSPECIFIED)
+- d:\MINI Project\mce-ai-assistant\faculty_lookup.py (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

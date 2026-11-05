@@ -1,0 +1,312 @@
+{
+  "departments": {
+    "ISE": {
+      "canonical": "Information Science & Engineering",
+      "short_forms": ["ise", "i.s.e", "i.s.e.", "is dept", "info sci", "infosci", "infosci dept"],
+      "synonyms": ["Information Science and Engineering", "Department of Information Science & Engineering", "ISE Department"],
+      "typos": ["informaton science", "informtion science", "information scince", "infomation science"]
+    },
+    "CSE": {
+      "canonical": "Computer Science & Engineering",
+      "short_forms": ["cse", "c.s.e", "c.s.e.", "cs", "comp sci", "compsci", "cse dept"],
+      "synonyms": ["Computer Science and Engineering", "Department of Computer Science & Engineering", "CSE Department"],
+      "typos": ["computr science", "computer scince", "comp science", "computer sciecne"]
+    },
+    "ECE": {
+      "canonical": "Electronics & Communication Engineering",
+      "short_forms": ["ece", "e.c.e", "e.c.e.", "ec", "e&c", "e & c", "ece dept"],
+      "synonyms": ["Electronics and Communication Engineering", "Department of Electronics & Communication Engineering", "E&C Department"],
+      "typos": ["electonics and communication", "electronics and comunication", "electronic communication"]
+    },
+    "EEE": {
+      "canonical": "Electrical & Electronics Engineering",
+      "short_forms": ["eee", "e.e.e", "e.e.e.", "ee", "e&e", "e & e", "eee dept"],
+      "synonyms": ["Electrical and Electronics Engineering", "Department of Electrical & Electronics Engineering", "E&E Department", "Electrical Power Engineering"],
+      "typos": ["electical and electronics", "electrical electronics", "electrical and electroncs"]
+    },
+    "MECH": {
+      "canonical": "Mechanical Engineering",
+      "short_forms": ["mech", "m.e.", "m.e", "me dept", "mech dept"],
+      "synonyms": ["Mechanical Engineering Department", "Department of Mechanical Engineering"],
+      "typos": ["mecanical", "mechnical", "machanical", "mechanial"]
+    },
+    "CIVIL": {
+      "canonical": "Civil Engineering",
+      "short_forms": ["civil", "civ", "ce", "c.e.", "c.e", "ced", "civil dept"],
+      "synonyms": ["Civil Engineering Department", "Department of Civil Engineering"],
+      "typos": ["civl", "civill", "cival"]
+    },
+    "AIML": {
+      "canonical": "Artificial Intelligence & Machine Learning",
+      "short_forms": ["aiml", "ai&ml", "ai & ml", "ai/ml", "ai ml", "aiml dept"],
+      "synonyms": ["Artificial Intelligence and Machine Learning", "Department of AIML"],
+      "typos": ["artifical intelligence", "machine lerning", "artifitial intelligence"]
+    },
+    "CSBS": {
+      "canonical": "Computer Science & Business Systems",
+      "short_forms": ["csbs", "cs & bs", "cs&bs", "cs/bs", "csbs dept"],
+      "synonyms": ["Computer Science and Business Systems", "Department of CSBS"],
+      "typos": ["computer science business systems", "cs and bs"]
+    },
+    "AIDS": {
+      "canonical": "Artificial Intelligence and Data Science",
+      "short_forms": ["aids", "ai&ds", "ai & ds", "ai/ds", "ai ds", "ai and ds", "aids dept"],
+      "synonyms": ["Artificial Intelligence and Data Science", "M.Tech in AI & Data Science", "Department of Artificial Intelligence & Data Science"],
+      "typos": ["artifical intelligence data science", "ai and data science"]
+    },
+    "EIE": {
+      "canonical": "Electronics and Instrumentation Engineering",
+      "short_forms": ["eie", "e&ie", "e & ie", "e&i", "e & i", "ei", "inst tech", "eie dept", "e&i dept"],
+      "synonyms": ["Electronics and Instrumentation Engineering", "Instrumentation Technology", "Department of Electronics & Instrumentation", "Electronics and Instrumentation"],
+      "typos": ["instrumentaion", "electonics instrumentation"]
+    },
+    "CADS": {
+      "canonical": "Computer Aided Design of Structures",
+      "short_forms": ["cads", "structures", "cad of structures", "mtech cads", "m.tech cads", "cads dept"],
+      "synonyms": ["Computer Aided Design of Structures", "M.Tech in Computer Aided Design of Structures", "CADS Program"],
+      "typos": ["cad structures", "computer aided design"]
+    },
+    "DECS": {
+      "canonical": "Digital Electronics and Communication Systems",
+      "short_forms": ["decs", "digital electronics", "de&cs", "de and cs", "mtech decs", "m.tech decs", "decs dept"],
+      "synonyms": ["Digital Electronics and Communication Systems", "M.Tech in Digital Electronics & Communication Systems", "Digital Electronics & Communication Systems"],
+      "typos": ["digital electronic", "digital communications"]
+    },
+    "PES": {
+      "canonical": "Power and Energy Systems",
+      "short_forms": ["pes", "power and energy", "power & energy", "power systems", "mtech pes", "m.tech pes", "pes dept"],
+      "synonyms": ["Power and Energy Systems", "M.Tech in Power and Energy Systems", "Power & Energy Systems"],
+      "typos": ["power energy systems"]
+    },
+    "RAI": {
+      "canonical": "Robotics and Artificial Intelligence",
+      "short_forms": ["rai", "robotics", "r and ai", "r & ai", "robotics and ai", "robotics & ai"],
+      "synonyms": ["Robotics and Artificial Intelligence", "Department of Robotics & Artificial Intelligence"],
+      "typos": ["robotics ai"]
+    },
+    "MBA": {
+      "canonical": "Master of Business Administration",
+      "short_forms": ["mba", "m.b.a", "m.b.a.", "business administration", "mba dept"],
+      "synonyms": ["Master of Business Administration", "MBA Department", "Department of Management"],
+      "typos": ["m.b.a"]
+    },
+    "CHEM": {
+      "canonical": "Department of Chemistry",
+      "short_forms": ["chem", "chemistry", "chemistry dept"],
+      "synonyms": ["Department of Chemistry", "Chemistry Department"],
+      "typos": ["chemisty"]
+    },
+    "VLSI": {
+      "canonical": "Electronics Engineering (VLSI Design & Technology)",
+      "short_forms": ["vlsi", "vlsi dept", "vlsi tech"],
+      "synonyms": ["Department of Electronics Engineering (VLSI Design & Technology)", "VLSI Design & Technology"],
+      "typos": ["vlsi design", "vlsi technolgy"]
+    },
+    "MCA": {
+      "canonical": "Master of Computer Applications",
+      "short_forms": ["mca", "m.c.a", "m.c.a.", "mca dept"],
+      "synonyms": ["Department of MCA", "Master of Computer Applications Department"],
+      "typos": ["m.c.a"]
+    },
+    "PHY": {
+      "canonical": "Department of Physics",
+      "short_forms": ["phy", "physics"],
+      "synonyms": ["Physics Department", "Basic Science Physics"],
+      "typos": ["physic", "physcis"]
+    },
+    "MATH": {
+      "canonical": "Department of Mathematics",
+      "short_forms": ["math", "maths", "mathematics"],
+      "synonyms": ["Mathematics Department", "Department of Maths", "Department of Mathematics"],
+      "typos": ["mathemtics", "mathamatics"]
+    },
+    "FIRST_YEAR": {
+      "canonical": "First-Year Department",
+      "short_forms": ["first year", "first-year", "1st year", "first year dept", "basic science", "basic sciences"],
+      "synonyms": ["First-Year Department", "Department of First Year", "Basic Science Department", "First Year Department"],
+      "typos": ["first yeer", "firstyer"]
+    }
+  },
+  "programmes": {
+    "BE": {
+      "canonical": "Bachelor of Engineering (B.E. / Under Graduate)",
+      "short_forms": ["b.e", "b.e.", "be degree", "be course", "ug", "undergraduate", "bachelor of engineering", "btech", "b.tech"],
+      "synonyms": ["Under Graduate Programmes", "B.E Degree", "Four year degree"],
+      "typos": ["undergrad", "bachelar of engineering"]
+    },
+    "MTECH": {
+      "canonical": "Master of Technology (M.Tech. / Post Graduate)",
+      "short_forms": ["mtech", "m.tech", "m.tech.", "pg", "postgraduate", "master of technology"],
+      "synonyms": ["Post Graduate Programmes", "M.Tech Degree"],
+      "typos": ["postgrad", "m.teck"]
+    },
+    "PHD": {
+      "canonical": "Doctor of Philosophy (Ph.D. / Research)",
+      "short_forms": ["phd", "ph.d", "ph.d.", "research", "doctorate"],
+      "synonyms": ["Doctor of Philosophy", "Research Centre", "M.Sc. Engg by Research"],
+      "typos": ["ph.d"]
+    }
+  },
+  "designations": {
+    "HOD": {
+      "canonical": "Head of Department (HOD)",
+      "short_forms": ["hod", "h.o.d", "h.o.d.", "head of dept", "head of department"],
+      "synonyms": ["Department Head", "Chairperson", "Head of the Department"],
+      "typos": ["head of deprtment", "h.o.d"]
+    },
+    "PRINCIPAL": {
+      "canonical": "Principal",
+      "short_forms": ["principal", "head of institution"],
+      "synonyms": ["Principal's Office", "College Principal"],
+      "typos": ["principle", "principall"]
+    },
+    "DEAN": {
+      "canonical": "Dean",
+      "short_forms": ["dean", "deans"],
+      "synonyms": ["Dean of Examinations", "Dean Student Affairs", "Dean Corporate Affairs"],
+      "typos": ["deane"]
+    },
+    "PROFESSOR": {
+      "canonical": "Professor",
+      "short_forms": ["prof", "prof.", "professor", "professors"],
+      "synonyms": ["Faculty Member", "Teacher", "Instructor"],
+      "typos": ["proffessor", "profeser", "proffesor"]
+    },
+    "ASST_PROF": {
+      "canonical": "Assistant Professor",
+      "short_forms": ["asst prof", "asst. prof", "asst professor", "assistant prof"],
+      "synonyms": ["Assistant Professor"],
+      "typos": ["asistant professor", "assistnt professor"]
+    },
+    "ASSOC_PROF": {
+      "canonical": "Associate Professor",
+      "short_forms": ["assoc prof", "assoc. prof", "assoc professor", "associate prof"],
+      "synonyms": ["Associate Professor"],
+      "typos": ["asociate professor"]
+    },
+    "WARDEN": {
+      "canonical": "Hostel Warden",
+      "short_forms": ["warden", "chief warden"],
+      "synonyms": ["Hostel In-charge", "Warden Office"],
+      "typos": ["wardan"]
+    },
+    "TPO": {
+      "canonical": "Training and Placement Officer (TPO)",
+      "short_forms": ["tpo", "t.p.o", "placement officer"],
+      "synonyms": ["Head of Training & Placement", "Dean Corporate Affairs"],
+      "typos": ["t.p.o"]
+    }
+  },
+  "facilities": {
+    "HOSTEL": {
+      "canonical": "Hostel Accommodation and Facilities",
+      "short_forms": ["hostel", "hostels", "dorm", "accommodation", "room"],
+      "synonyms": ["Boys Hostel", "Girls Hostel", "Mess", "Hostel Wi-Fi", "Boarding"],
+      "typos": ["hostle", "hostell"]
+    },
+    "LIBRARY": {
+      "canonical": "Central Library & Information Centre",
+      "short_forms": ["library", "lib", "central library", "books"],
+      "synonyms": ["Reading Room", "Digital Library", "Department Libraries", "Reference Section"],
+      "typos": ["libary", "librry"]
+    },
+    "PLACEMENT": {
+      "canonical": "Training and Placement Cell",
+      "short_forms": ["placements", "placement", "jobs", "packages", "recruitment", "t&p", "t & p"],
+      "synonyms": ["Campus Placement", "Highest Package", "Average Package", "Placement Statistics", "Recruiting Companies", "Offers"],
+      "typos": ["placemnt", "placemnts", "plase ment"]
+    },
+    "EXAM": {
+      "canonical": "Examinations & Evaluation",
+      "short_forms": ["exams", "exam", "cie", "see", "timetable", "results", "valuation"],
+      "synonyms": ["Continuous Internal Evaluation", "Semester End Examination", "Make-up Examination", "Fast Track Exam"],
+      "typos": ["exm", "examm"]
+    },
+    "ADMISSION": {
+      "canonical": "Admission Process & Eligibility",
+      "short_forms": ["admissions", "admission", "intake", "cutoff", "cut-off", "seat allotment"],
+      "synonyms": ["KEA Counselling", "CET Admission", "COMEDK Admission", "Management Quota", "Eligibility Criteria"],
+      "typos": ["addmission", "admisson"]
+    },
+    "FEES": {
+      "canonical": "Fee Structure & Reimbursement",
+      "short_forms": ["fees", "fee", "tuition fee", "cost"],
+      "synonyms": ["Government Fee", "COMEDK Fee", "Management Fee", "Hostel Fee", "Fee Concession", "Fee Reimbursement"],
+      "typos": ["fee structure", "feess"]
+    },
+    "SCHOLARSHIP": {
+      "canonical": "Scholarships & Financial Aid",
+      "short_forms": ["scholarships", "scholarship", "financial aid", "stipend"],
+      "synonyms": ["SSP Scholarship", "NSP Scholarship", "SC/ST Fee Reimbursement", "Alumni Scholarship", "Chandappa Patil Scholarship"],
+      "typos": ["scholar ship", "schollarship"]
+    },
+    "CLUBS": {
+      "canonical": "Student Clubs, Associations & Campus Life",
+      "short_forms": ["clubs", "club", "activities", "events", "fest", "sports"],
+      "synonyms": ["Student Associations", "Technical Clubs", "Cultural Events", "ME-RIISE Foundation", "Gymkhana"],
+      "typos": ["cllub", "clubbs"]
+    },
+    "LABS": {
+      "canonical": "Laboratories & Research Centres",
+      "short_forms": ["labs", "lab", "facilities", "research centre"],
+      "synonyms": ["Computer Centre", "UTM Lab", "Research Facility", "Department Labs"],
+      "typos": ["laboratry", "labortory"]
+    }
+  },
+  "regulatory_and_college": {
+    "MCE": {
+      "canonical": "Malnad College of Engineering, Hassan",
+      "short_forms": ["mce", "m.c.e", "m.c.e.", "malnad", "malnad college"],
+      "synonyms": ["Malnad College of Engineering Hassan", "Malenadu College"],
+      "typos": ["malnad colledge", "malnad collge"]
+    },
+    "VTU": {
+      "canonical": "Visvesvaraya Technological University (VTU), Belagavi",
+      "short_forms": ["vtu", "v.t.u", "v.t.u."],
+      "synonyms": ["Visvesvaraya Technological University", "VTU Belagavi"],
+      "typos": ["v.t.u"]
+    },
+    "AICTE": {
+      "canonical": "All India Council for Technical Education (AICTE)",
+      "short_forms": ["aicte", "a.i.c.t.e"],
+      "synonyms": ["All India Council for Technical Education"],
+      "typos": ["a.i.c.t.e"]
+    },
+    "NAAC": {
+      "canonical": "National Assessment and Accreditation Council (NAAC)",
+      "short_forms": ["naac", "n.a.a.c"],
+      "synonyms": ["NAAC Accreditation"],
+      "typos": ["n.a.a.c"]
+    },
+    "NBA": {
+      "canonical": "National Board of Accreditation (NBA)",
+      "short_forms": ["nba", "n.b.a"],
+      "synonyms": ["NBA Accreditation"],
+      "typos": ["n.b.a"]
+    },
+    "TEQIP": {
+      "canonical": "Technical Education Quality Improvement Programme (TEQIP)",
+      "short_forms": ["teqip", "t.e.q.i.p"],
+      "synonyms": ["World Bank TEQIP Project"],
+      "typos": ["t.e.q.i.p"]
+    },
+    "USN": {
+      "canonical": "University Seat Number (USN)",
+      "short_forms": ["usn", "roll no", "registration number"],
+      "synonyms": ["VTU USN"],
+      "typos": ["u.s.n"]
+    },
+    "NSS": {
+      "canonical": "National Service Scheme (NSS)",
+      "short_forms": ["nss", "n.s.s"],
+      "synonyms": ["National Service Scheme"],
+      "typos": ["n.s.s"]
+    },
+    "NCC": {
+      "canonical": "National Cadet Corps (NCC)",
+      "short_forms": ["ncc", "n.c.c"],
+      "synonyms": ["National Cadet Corps"],
+      "typos": ["n.c.c"]
+    }
+  }
+}

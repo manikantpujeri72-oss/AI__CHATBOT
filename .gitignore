@@ -1,0 +1,35 @@
+# Environment files - keep secrets safe
+.env
+
+# Virtual environment
+myenv/
+venv/
+env/
+
+# ChromaDB vector store (large binary data, rebuild with ingest.py)
+chroma_db/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Scratch / temp files
+scratch/
+*.log
+
+# Deleted documents archive
+documents/_deleted/
+
+# Large test images
+test_p0.png
+test_p0_white.png

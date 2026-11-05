@@ -1,0 +1,42 @@
+{
+  "AIML faculty.pdf": {
+    "pages": 2,
+    "cards": 7
+  },
+  "civil faculty.pdf": {
+    "pages": 21,
+    "cards": 21
+  },
+  "CSBS Faculty.pdf": {
+    "pages": 2,
+    "cards": 8
+  },
+  "CSE department.pdf": {
+    "pages": 6,
+    "cards": 25
+  },
+  "electrical and electronics faculty.pdf": {
+    "pages": 5,
+    "cards": 21
+  },
+  "electronics and communication Department.pdf": {
+    "pages": 17,
+    "cards": 17
+  },
+  "ISE faculty.pdf": {
+    "pages": 3,
+    "cards": 14
+  },
+  "mca and ece.pdf": {
+    "pages": 4,
+    "cards": 20
+  },
+  "mechanical faculty.pdf": {
+    "pages": 27,
+    "cards": 27
+  },
+  "VLSI faculty.pdf": {
+    "pages": 4,
+    "cards": 4
+  }
+}
